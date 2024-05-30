@@ -1,4 +1,4 @@
-var chateau=null;
+var chateau = null;
 var NextTourBtn = document.getElementById('NextTour');
 var lancer = document.getElementById("LancerPartie");
 
@@ -7,41 +7,51 @@ const selectDivSection = document.getElementById('selectDiv');
 const trainBtn = document.getElementById('trainBtn');
 const trainBleuButton = document.getElementById('trainBleu');
 const trainRougeButton = document.getElementById('trainRed');
-const waitListBtnB=document.getElementById('BattenteListe');
-const waitListBtnR=document.getElementById('RattenteListe');
-const piste=document.getElementById('piste');
+const waitListBtnB = document.getElementById('BattenteListe');
+const waitListBtnR = document.getElementById('RattenteListe');
+const piste = document.getElementById('piste');
 const audio = document.getElementById('musicoff');
 const volume = document.getElementById('background-music');
+const LancerP = document.getElementById('LancerP');
+const msg = document.getElementById("msgGagner");
+
 
 var sideSelected;
 var partie = new Partie();
 
-lancer.addEventListener("click",()=>{
-    partie.lancerPartie();
-    NextTourBtn.style.display="block";
-    lancer.style.display="none"
-});
+LancerP.addEventListener("click", () => {
+    // partie.lancerPartie(); hedhiii eli bech naamlelha bouton jdida
+    NextTourBtn.style.display = "none";
+    lancer.style.display = "inline";
+    LancerP.style.display = "none";
+    waitListBtnB.style.display = "inline";
+    waitListBtnR.style.display = "inline";
+    trainRougeButton.style.display = "inline";
+    trainBleuButton.style.display = "inline"
 
-NextTourBtn.addEventListener('click',()=>{  partie.nouveauTour();})
+});
+lancer.addEventListener("click", () => { partie.lancerPartie(); })
+
+NextTourBtn.addEventListener('click', () => { partie.nouveauTour(); })
 
 
 audio.addEventListener('click', () => {
-  if (volume.paused) {
-      volume.play();
-      document.getElementById('musicoff').src = './images/volume_727269 (1).png';
-  } else {
-      volume.pause();
-      document.getElementById('musicoff').src = './images/mute_727240.png'; 
-  }
+    if (volume.paused) {
+        volume.play();
+        document.getElementById('musicoff').src = './images/volume_727269 (1).png';
+    } else {
+        volume.pause();
+        document.getElementById('musicoff').src = './images/mute_727240.png';
+    }
 });
 
 trainBleuButton.addEventListener('click', () => {
     if (selectDivSection.style.display === 'none') {
         selectDivSection.style.display = 'block';
-        sideSelected= 'Bleu';
+        sideSelected = 'Bleu';
     } else {
         selectDivSection.style.display = 'none';
-        sideSelected= '';    
+        sideSelected = '';
     }
 });
 
@@ -49,22 +59,22 @@ trainBleuButton.addEventListener('click', () => {
 trainRougeButton.addEventListener('click', () => {
     if (selectDivSection.style.display === 'none') {
         selectDivSection.style.display = 'block';
-        sideSelected= 'Rouge';
+        sideSelected = 'Rouge';
     } else {
         selectDivSection.style.display = 'none';
-        sideSelected= '';
-        
+        sideSelected = '';
+
     }
 });
 
 
-trainBtn.addEventListener('click',()=> {
-  var warrior = document.getElementById("imageName").textContent;
-    if(sideSelected === 'Rouge'){
-      chateau = partie.getChateauRouge();    
+trainBtn.addEventListener('click', () => {
+    var warrior = document.getElementById("imageName").textContent;
+    if (sideSelected === 'Rouge') {
+        chateau = partie.getChateauRouge();
         listR = chateau.listeDattente;
-    }else{
-      chateau = partie.getChateauBleu();    
+    } else {
+        chateau = partie.getChateauBleu();
         listB = chateau.listeDattente;
     }
     switch (warrior) {
@@ -83,22 +93,25 @@ trainBtn.addEventListener('click',()=> {
         default:
             break;
     }
- 
 
-}); 
-waitListBtnB.addEventListener('click',()=> {
-    chateau = partie.getChateauBleu();    
+
+});
+waitListBtnB.addEventListener('click', () => {
+    chateau = partie.getChateauBleu();
     listB = chateau.listeDattente;
     console.log(listB);
-  
-  }); 
 
-waitListBtnR.addEventListener('click',()=> {
-    chateau = partie.getChateauRouge();    
+});
+
+waitListBtnR.addEventListener('click', () => {
+    chateau = partie.getChateauRouge();
     listR = chateau.listeDattente;
     console.log(listR);
-  
-  }); 
+
+});
+
+
+
 
 
 

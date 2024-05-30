@@ -65,7 +65,7 @@ class Chateau {
         if (nbGuerriers !== 0) {
             console.log("Chateau " + this.getCouleur() + " : " + nbGuerriers + " guerrier(s) dans votre armée (Au combat)!");
         } else {
-            alert("train please your worriors !!! chateau ",this.getCouleur);
+            alert("train please your worriors chateau "+this.getCouleur()+" !!!");
                 }
     }
 

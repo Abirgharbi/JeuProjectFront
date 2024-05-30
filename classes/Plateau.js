@@ -57,14 +57,14 @@ class Plateau {
         });
     }
 
-    gagner() {
+    gagner(chatb,chatr) {
         let couleur = 'Noir';
         let carreau0 = this.carreaux[0];
         let carreau4 = this.carreaux[4];
-        if (carreau0.getListeRouge().length > 0) {
+        if (carreau0.getListeRouge().length > 0 && carreau4.getListeBleu().length == 0) {
             couleur = "Rouge";
         }
-        if (carreau4.getListeBleu().length > 0) {
+        if (carreau4.getListeBleu().length > 0 && carreau4.getListeRouge().length == 0) {
             couleur = 'Bleu';
         }
         return couleur;

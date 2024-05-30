@@ -6,7 +6,6 @@ body {
     position: relative;
 }
 
-
 #piste {
   
     position: fixed;
@@ -43,28 +42,24 @@ th {
     border-collapse: separate;
 }
 
-
-
-
-
 #trainBleu {
     margin-top: 72px;
-
+   display: none;
     background-color: rgba(106, 106, 248, 0.7);
 }
 
 #BattenteListe{
     margin-top: 50px;
     margin-left: 30%;
-
+    display: none;
     background-color: rgba(106, 106, 248, 0.562);
 }
 
 #trainRed {
     margin-top: 72px;
-
     background-color: rgba(209, 67, 67, 0.7);
     float: right;
+    display: none;
 
 }
 #RattenteListe{
@@ -72,11 +67,8 @@ th {
     margin-right: 30%;
     background-color: rgba(209, 67, 67, 0.7);
     float: right;
+    display: none;
 }
-
-
-
-
 
 .chateau {
     margin: 10px auto;
@@ -239,10 +231,19 @@ h5 {
     right: 10px;
 
 }
+#LancerPartie{
+    margin-top: 5%;
+    display: none;
 
+}
+#LancerP{
+    margin-top: 15%;
+}
 #NextTour {
     display: none;
+    margin-top: 5%;
 }
+
 
 #musicoff {
     height: 30px;
@@ -273,9 +274,6 @@ button:hover {
 
 }
 
-
-
-
 img {
     display: inline-block;
 }
@@ -284,10 +282,12 @@ ul img {
     height: 100px !important;
     width: 60px !important;
     margin-bottom: 5px;
-
     border: 1px solid #00000000;
     border-radius: 5px;
     background-color: #f0f0f0;
     display: inline-block;
     margin-right: 10px;
 }
+
+
+  

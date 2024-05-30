@@ -7,50 +7,56 @@ class Partie {
         this.chateauBleu = new Chateau("Bleu");
         this.plateau = new Plateau();
         this.tour = 0;
+
     }
 
     lancerPartie() {
         if (this.chateauRouge.getListeDattente().length === 0 && this.chateauBleu.getListeDattente().length === 0) {
-            console.log("Vous n'avez pas entrainé des unités dans les deux chateaux !");
+            alert("Vous n'avez pas entrainé des unités dans les deux chateaux !");
         } else {
+            lancer.style.display = "none";
+            NextTourBtn.style.display = "inline";
             this.chateauBleu.sortirGuerrier();
             this.chateauRouge.sortirGuerrier();
             this.majListe();
             this.placerGuerriers();
             console.log("Les premières unités ont été créées ou attendent d'avoir suffisamment de ressources. \n Lancez le premier tour.");
             console.log("Plateau en début de jeu : ");
-            this.updateBoard();
+            this.miseEnJeu();
         }
     }
 
     nouveauTour() {
         this.tour++;
         console.log("------------------ Tour : " + this.tour + " ------------------");
-       
-            this.chateauBleu.setRessources(this.chateauBleu.getRessources() + 1);
-            this.chateauRouge.setRessources(this.chateauRouge.getRessources() + 1);
-            this.chateauBleu.afficherArmee();
-            this.chateauRouge.afficherArmee();
-            this.plateau.avancerLesUnites();
-            this.chateauBleu.sortirGuerrier();
-            this.chateauRouge.sortirGuerrier();
-            this.majListe();
-            this.placerGuerriers();
-            this.plateau.verifRencontreGuerrier(this.getChateauBleu(), this.getChateauRouge());
-            let couleur = this.plateau.gagner();
-            if (couleur !== "Noir") {
-                console.log(couleur+" a gagner");
-                NextTourBtn.style.display="none";
-                trainBleuButton.style.display="none";
-                trainRougeButton.style.display="none";
-                waitListBtnB.style.display="none";
-                waitListBtnR.style.display="none";
-              
+
+        this.chateauBleu.setRessources(this.chateauBleu.getRessources() + 1);
+        this.chateauRouge.setRessources(this.chateauRouge.getRessources() + 1);
+
+        this.plateau.avancerLesUnites();
+        this.chateauBleu.sortirGuerrier();
+        this.chateauRouge.sortirGuerrier();
+        this.chateauBleu.afficherArmee();
+        this.chateauRouge.afficherArmee();
+        this.majListe();
+        this.placerGuerriers();
+        this.plateau.verifRencontreGuerrier(this.getChateauBleu(), this.getChateauRouge());
+        let couleur = this.plateau.gagner(this.chateauBleu, this.chateauRouge);
+        if (couleur !== "Noir") {
+            console.log(couleur + " a gagner");
+            msg.innerHTML=`Les Guerries ${couleur} ont gagné `;
 
 
-            }
-        
-        this.updateBoard();
+            
+            NextTourBtn.style.display = "none";
+            trainBleuButton.style.display = "none";
+            trainRougeButton.style.display = "none";
+            waitListBtnB.style.display = "none";
+            waitListBtnR.style.display = "none";
+
+        }
+
+        this.miseEnJeu();
     }
 
     placerGuerriers() {
@@ -96,9 +102,9 @@ class Partie {
         this.chateauBleu = chateauBleu;
     }
 
-    updateBoard() {
-        const plateaus = this.plateau.getCarreaux();
-        plateaus.forEach((carreau, index) => {
+    miseEnJeu() {
+        const plateaux = this.plateau.getCarreaux();
+        plateaux.forEach((carreau, index) => {
             const bleuList = document.getElementById(`l${index}`);
             const rougeList = document.getElementById(`l${index}`);
             bleuList.innerHTML = '';
@@ -106,7 +112,7 @@ class Partie {
             carreau.getListeBleu().forEach(guerrier => {
                 const img = document.createElement('img');
                 img.src = guerrier.getImageSrc();
-                img.style.backgroundColor ="rgba(106, 106, 248, 0.7)"
+                img.style.backgroundColor = "rgba(106, 106, 248, 0.7)"
                 img.style.width = "100px";
                 img.style.height = "100px";
                 img.style.objectFit = "contain";
@@ -115,7 +121,7 @@ class Partie {
             carreau.getListeRouge().forEach(guerrier => {
                 const img = document.createElement('img');
                 img.src = guerrier.getImageSrc();
-                img.style.backgroundColor ="rgba(209, 67, 67, 0.7)"
+                img.style.backgroundColor = "rgba(209, 67, 67, 0.7)"
                 img.style.width = "100px";
                 img.style.height = "100px";
                 img.style.objectFit = "contain";
