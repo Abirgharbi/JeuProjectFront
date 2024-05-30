@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="jeu.css">
+    <title>Jeu</title>
+</head>
+
+<body>
+    <audio id="background-music" loop>
+        <source src="./images/Nancy Ajram - Akhasmak Ah (Official Music Video)  نانسي عجرم - أخصمك آه.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <img id="musicoff" src="./images/mute_727240.png" alt="imageoff" >
+
+    <div class="button">
+        <button id="trainBleu" value="Train">Train</button>
+        <button id="trainRed" value="Train">Train</button>
+    </div>
+    <button id="BattenteListe" value="">Wait List</button>
+    <button id="RattenteListe" value="">Wait List</button>
+
+    <center>
+        <button id="NextTour">Tour Suivant</button><br>
+        <br>
+        <button id="LancerPartie">Lancer Partie</button><br>
+    </center>
+   
+    <div id="piste" >
+        <table class="table-fixed">
+            <th id="0">
+                <ul id="l0"></ul>
+            </th>
+            <th id="1">
+                <ul id="l1"></ul>
+            </th>
+            <th id="2">
+                <ul id="l2"></ul>
+            </th>
+            <th id="3">
+                <ul id="l3"></ul>
+            </th>
+            <th id="4">
+                <ul id="l4"></ul>
+            </th>
+        </table>
+    </div>
+
+    <div class="select" id="selectDiv" style="display: none;">
+        <fieldset>
+            <div>
+                <button class="prev" id="prevButton">&lt;</button>
+                <center>
+                    <h4>Please train your warrior</h4>
+                    <img src="" alt="Resource image" id="image">
+                    <h4 id="imageName"></h4>
+                    <h5 id="ResName"></h5>
+
+                </center>
+                <button class="next" id="nextButton">&gt;</button>
+            </div>
+            <center>
+                <button id="trainBtn">Train</button>
+            </center>
+        </fieldset>
+    </div>
+
+
+    <script src="./classes/jeu.js"></script>
+    <script src="./classes/De.js"></script>
+    <script src="./classes/Guerrier.js"></script>
+    <script src="./classes/Nain.js"></script>
+    <script src="./classes/ChefNain.js"></script>
+    <script src="./classes/Elfe.js"></script>
+    <script src="./classes/ChefElfe.js"></script>
+    <script src="./classes/Chateau.js"></script>
+    <script src="./classes/Carreau.js"></script>
+    <script src="./classes/Plateau.js"></script>
+    <script src="./classes/Partie.js"></script>
+    <script src="./classes/Classless.js"></script>
+
+</body>
+
+</html>
