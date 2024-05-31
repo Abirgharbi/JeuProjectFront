@@ -29,14 +29,6 @@ class Guerrier {
         return this.pv <= 0;
     }
 
-    afficheInfosGuerriers() {
-        console.log("Type : " + this.type);
-        console.log("PV : " + this.pv);
-        console.log("Armure : " + this.armure);
-        console.log("Force : " + this.force + " (Force multiplié par dégat : " + this.degat + ").");
-        console.log("Cout unité : " + this.cout);
-    }
-
     getArmure() {
         return this.armure;
     }
@@ -83,6 +75,19 @@ class Guerrier {
 
     setArmure(armure) {
         this.armure = armure;
+    }
+    
+    afficheInfosGuerriers() {
+        return `
+        <ul>
+          <li>Type : ${this.type}</li>
+          <li>PV : ${this.pv}</li>
+          <li>Armure : ${this.armure}</li>
+          <li>Force : ${this.force} (Force multiplié par dégât : ${this.degat})</li>
+          <li>Coût unité : ${this.cout}</li>
+        </ul>
+      `;
+        
     }
     getImageSrc() {
         switch (this.type) {

@@ -43,14 +43,27 @@ th {
 }
 
 #trainBleu {
+  
     margin-top: 72px;
    display: none;
     background-color: rgba(106, 106, 248, 0.7);
 }
-
+#infoBoxB{
+    position:fixed;
+    margin-top: 150px;
+    display: none;
+    float: left;
+}
+#infoBoxR{
+    position:fixed;
+    margin-top: 150px;
+    display: none;
+    float: right;
+    margin-left: 55%;
+}
 #BattenteListe{
     margin-top: 50px;
-    margin-left: 30%;
+
     display: none;
     background-color: rgba(106, 106, 248, 0.562);
 }
@@ -64,10 +77,11 @@ th {
 }
 #RattenteListe{
     margin-top: 50px;
-    margin-right: 30%;
+
     background-color: rgba(209, 67, 67, 0.7);
     float: right;
     display: none;
+    
 }
 
 .chateau {
@@ -251,6 +265,7 @@ h5 {
 }
 
 button {
+  
     background-color: rgba(76, 175, 80, 0.8);
 
     border: none;
@@ -288,6 +303,7 @@ ul img {
     display: inline-block;
     margin-right: 10px;
 }
+
 
 
   

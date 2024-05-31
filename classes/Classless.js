@@ -16,6 +16,7 @@ const LancerP = document.getElementById('LancerP');
 const msg = document.getElementById("msgGagner");
 
 
+
 var sideSelected;
 var partie = new Partie();
 
@@ -96,18 +97,56 @@ trainBtn.addEventListener('click', () => {
 
 
 });
-waitListBtnB.addEventListener('click', () => {
-    chateau = partie.getChateauBleu();
-    listB = chateau.listeDattente;
+waitListBtnB.addEventListener('mouseover', () => {
+    const chateau = partie.getChateauBleu();
+    const listB = chateau.listeDattente;
     console.log(listB);
+    if(listB.length == 0){
+        alert("Vous n'avez pas entrainé votre guerriers !");
+    }
+    else{
+    const infoBox = document.getElementById('infoBoxB');
+    const li =document.createElement('li');
+    let content = '';
+    listB.forEach(guerrier => {
+        const imgSrc = guerrier.getImageSrc();
+        content += `<li style="display: inline-block; "><img src="${imgSrc}" style="width: 50px; height: 50px; object-fit: contain; margin: 5px;"> <p style="color:white;text-align: center;">${guerrier.getType()}</p></li>`;
+    });
 
+    infoBox.innerHTML=content;
+    infoBox.style.display = 'inline-block';
+}
+});
+waitListBtnB.addEventListener('mouseout', () => {
+    infoBoxB.style.display = 'none';
+  
 });
 
-waitListBtnR.addEventListener('click', () => {
+
+waitListBtnR.addEventListener('mouseover', () => {
     chateau = partie.getChateauRouge();
     listR = chateau.listeDattente;
     console.log(listR);
+    if(listR.length == 0){
+        alert("Vous n'avez pas entrainé votre guerriers !");
+    }
+    else{
+    const infoBox = document.getElementById('infoBoxR');
+    const li =document.createElement('li');
+    let content = '';
+    listR.forEach(guerrier => {
+        const imgSrc = guerrier.getImageSrc();
+        content += `<li style="display: inline-block; "><img src="${imgSrc}" style="width: 50px; height: 50px; object-fit: contain; margin: 5px;"> <p style="color:white;text-align: center;">${guerrier.getType()}</p></li>`;
+    });
 
+    infoBox.innerHTML=content;
+    infoBox.style.display = 'inline-block';
+}
+
+});
+waitListBtnR.addEventListener('mouseout', () => {
+    infoBoxR.style.display = 'none';
+  
 });
 
 

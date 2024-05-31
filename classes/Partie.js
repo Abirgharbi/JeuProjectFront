@@ -44,10 +44,8 @@ class Partie {
         let couleur = this.plateau.gagner(this.chateauBleu, this.chateauRouge);
         if (couleur !== "Noir") {
             console.log(couleur + " a gagner");
-            msg.innerHTML=`Les Guerries ${couleur} ont gagné `;
+            msg.innerHTML = `Les Guerries ${couleur} ont gagné `;
 
-
-            
             NextTourBtn.style.display = "none";
             trainBleuButton.style.display = "none";
             trainRougeButton.style.display = "none";
@@ -103,12 +101,25 @@ class Partie {
     }
 
     miseEnJeu() {
+
+        const infoBox = document.createElement('div');
+        infoBox.style.position = 'absolute';
+        infoBox.style.backgroundColor = 'white';
+        infoBox.style.border = '1px solid #ccc';
+        infoBox.style.padding = '10px';
+        infoBox.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.1)';
+        infoBox.style.display = 'none';
+        infoBox.style.zIndex="1500";
+
         const plateaux = this.plateau.getCarreaux();
         plateaux.forEach((carreau, index) => {
             const bleuList = document.getElementById(`l${index}`);
             const rougeList = document.getElementById(`l${index}`);
             bleuList.innerHTML = '';
             rougeList.innerHTML = '';
+
+
+
             carreau.getListeBleu().forEach(guerrier => {
                 const img = document.createElement('img');
                 img.src = guerrier.getImageSrc();
@@ -116,6 +127,18 @@ class Partie {
                 img.style.width = "100px";
                 img.style.height = "100px";
                 img.style.objectFit = "contain";
+                img.addEventListener('mouseover', () => {
+                    infoBox.innerHTML = guerrier.afficheInfosGuerriers();
+                    infoBox.style.display = 'block';
+                    const rect = img.getBoundingClientRect();
+                    infoBox.style.top = `${rect.top + window.scrollY}px`;
+                    infoBox.style.left = `${rect.right + window.scrollX + 10}px`; 
+                    document.body.appendChild(infoBox);
+                });
+                img.addEventListener('mouseout', () => {
+                    infoBox.style.display = 'none';
+                    document.body.removeChild(infoBox);
+                });
                 bleuList.appendChild(img);
             });
             carreau.getListeRouge().forEach(guerrier => {
@@ -125,6 +148,18 @@ class Partie {
                 img.style.width = "100px";
                 img.style.height = "100px";
                 img.style.objectFit = "contain";
+                img.addEventListener('mouseover', () => {
+                infoBox.innerHTML = guerrier.afficheInfosGuerriers();
+                infoBox.style.display = 'block';
+                const rect = img.getBoundingClientRect();
+                infoBox.style.top = `${rect.top + window.scrollY}px`;
+                infoBox.style.left = `${rect.right + window.scrollX + 10}px`; 
+                document.body.appendChild(infoBox);
+                });
+                img.addEventListener('mouseout', () => {
+                    infoBox.style.display = 'none';
+                    document.body.removeChild(infoBox);
+                });
                 rougeList.appendChild(img);
             });
         });
