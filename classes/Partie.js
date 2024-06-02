@@ -9,10 +9,10 @@ class Partie {
         this.tour = 0;
 
     }
-
+    // Placer les guerriers sur les premiers carreaux : 4 pour les rouges  et 0 pour les bleus sans tenir compte que c'est une nouvelle  tour
     lancerPartie() {
         if (this.chateauRouge.getListeDattente().length === 0 && this.chateauBleu.getListeDattente().length === 0) {
-            alert("Vous n'avez pas entrainé des unités dans les deux chateaux !");
+            alert("Vous n'avez pas entrainé les guerriers dans les deux chateaux !");
         } else {
             lancer.style.display = "none";
             NextTourBtn.style.display = "inline";
@@ -20,20 +20,19 @@ class Partie {
             this.chateauRouge.sortirGuerrier();
             this.majListe();
             this.placerGuerriers();
-            console.log("Les premières unités ont été créées ou attendent d'avoir suffisamment de ressources. \n Lancez le premier tour.");
-            console.log("Plateau en début de jeu : ");
             this.miseEnJeu();
+         
+         
         }
     }
-
+   // commencer un tour a chaque fois qu'on appuit sur le boutton "next tour"
     nouveauTour() {
         this.tour++;
-        console.log("------------------ Tour : " + this.tour + " ------------------");
+        console.log(" Tour : " + this.tour);
 
         this.chateauBleu.setRessources(this.chateauBleu.getRessources() + 1);
         this.chateauRouge.setRessources(this.chateauRouge.getRessources() + 1);
-
-        this.plateau.avancerLesUnites();
+        this.plateau.avancerGuerries();
         this.chateauBleu.sortirGuerrier();
         this.chateauRouge.sortirGuerrier();
         this.chateauBleu.afficherArmee();
@@ -42,15 +41,20 @@ class Partie {
         this.placerGuerriers();
         this.plateau.verifRencontreGuerrier(this.getChateauBleu(), this.getChateauRouge());
         let couleur = this.plateau.gagner(this.chateauBleu, this.chateauRouge);
-        if (couleur !== "Noir") {
-            console.log(couleur + " a gagner");
-            msg.innerHTML = `Les Guerries ${couleur} ont gagné `;
 
+        if (couleur !== "Noir") {
+            msg.style.display ="inline-block"
             NextTourBtn.style.display = "none";
             trainBleuButton.style.display = "none";
             trainRougeButton.style.display = "none";
             waitListBtnB.style.display = "none";
             waitListBtnR.style.display = "none";
+            console.log(couleur + " a gagner");
+            msg.innerHTML = `Les Guerries ${couleur} ont gagné `;
+            msg.style.opacity = 0; 
+            void msg.offsetWidth;  
+          
+
 
         }
 
@@ -73,16 +77,7 @@ class Partie {
         this.listeGuerriersRouge = this.chateauRouge.getListeTemp().slice();
     }
 
-    gagnerDirect() {
-        let couleur = "Noir";
-        if (this.chateauBleu.getListeGuerriers().length === 0 && this.chateauBleu.getListeDattente().length === 0 && this.plateau.carreaux[0].getListeRouge().length > 0) {
-            couleur = this.chateauRouge.getCouleur();
-        }
-        if (this.chateauRouge.getListeGuerriers().length === 0 && this.chateauRouge.getListeDattente().length === 0 && this.plateau.carreaux[4].getListeBleu().length > 0) {
-            couleur = this.chateauBleu.getCouleur();
-        }
-        return couleur;
-    }
+   
 
     getChateauRouge() {
         return this.chateauRouge;
@@ -99,7 +94,7 @@ class Partie {
     setChateauBleu(chateauBleu) {
         this.chateauBleu = chateauBleu;
     }
-
+ // lier la logique du jeu par l'interface du jeu en placant a chaque fois le contenu du liste sur la table html
     miseEnJeu() {
 
         const infoBox = document.createElement('div');

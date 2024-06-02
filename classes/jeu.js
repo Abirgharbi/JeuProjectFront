@@ -1,5 +1,7 @@
 
-function handleImageGallery() {
+
+// fonction de choix des guerriers à entrainer par le popUp en appuyant sur les boutons train des chateaux 
+function handleImage() {
  
     var images = [
         { src: 'images/elfe.png', name: 'Elf',Resource:'2' },
@@ -47,5 +49,5 @@ function handleImageGallery() {
 }
 
 
-handleImageGallery();
+handleImage();
 

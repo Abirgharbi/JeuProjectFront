@@ -1,3 +1,5 @@
+
+// class 
 var chateau = null;
 var NextTourBtn = document.getElementById('NextTour');
 var lancer = document.getElementById("LancerPartie");
@@ -20,8 +22,9 @@ const msg = document.getElementById("msgGagner");
 var sideSelected;
 var partie = new Partie();
 
+// lancer le jeu ( les boutons de lancement et les element d'entrainement )
 LancerP.addEventListener("click", () => {
-    // partie.lancerPartie(); hedhiii eli bech naamlelha bouton jdida
+ 
     NextTourBtn.style.display = "none";
     lancer.style.display = "inline";
     LancerP.style.display = "none";
@@ -31,21 +34,26 @@ LancerP.addEventListener("click", () => {
     trainBleuButton.style.display = "inline"
 
 });
+
+
+// lancer la partie 
 lancer.addEventListener("click", () => { partie.lancerPartie(); })
 
+// lancer a chaque fois le tour suivant 
 NextTourBtn.addEventListener('click', () => { partie.nouveauTour(); })
 
-
+// activer l'audio
 audio.addEventListener('click', () => {
     if (volume.paused) {
         volume.play();
-        document.getElementById('musicoff').src = './images/volume_727269 (1).png';
+        document.getElementById('musicoff').src = './images/volume.png';
     } else {
         volume.pause();
-        document.getElementById('musicoff').src = './images/mute_727240.png';
+        document.getElementById('musicoff').src = './images/mute.png';
     }
 });
 
+// desactiver l'audio
 trainBleuButton.addEventListener('click', () => {
     if (selectDivSection.style.display === 'none') {
         selectDivSection.style.display = 'block';
@@ -56,7 +64,7 @@ trainBleuButton.addEventListener('click', () => {
     }
 });
 
-
+// designer le chateau à entrainer ses guerriers 
 trainRougeButton.addEventListener('click', () => {
     if (selectDivSection.style.display === 'none') {
         selectDivSection.style.display = 'block';
@@ -68,7 +76,7 @@ trainRougeButton.addEventListener('click', () => {
     }
 });
 
-
+// Appel de fonction d'entrainement 
 trainBtn.addEventListener('click', () => {
     var warrior = document.getElementById("imageName").textContent;
     if (sideSelected === 'Rouge') {
@@ -97,6 +105,7 @@ trainBtn.addEventListener('click', () => {
 
 
 });
+// Afficher la liste d'attente de chateau bleu
 waitListBtnB.addEventListener('mouseover', () => {
     const chateau = partie.getChateauBleu();
     const listB = chateau.listeDattente;
@@ -122,7 +131,7 @@ waitListBtnB.addEventListener('mouseout', () => {
   
 });
 
-
+// Afficher la liste d'attente de chateau rouge 
 waitListBtnR.addEventListener('mouseover', () => {
     chateau = partie.getChateauRouge();
     listR = chateau.listeDattente;

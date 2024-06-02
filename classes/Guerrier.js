@@ -1,7 +1,7 @@
 
 const VAL_FORCE = 10;
 const VAL_COUT = 1;
-const VAL_ARMURE = 1;
+const VAL_ARMURE = 1; // constante pour désigner les degats à eviter dans chaque attaque pour chaque guerrier 
 const VAL_DEGAT = 1;
 const VAL_PV = 100;
 class Guerrier {
@@ -15,7 +15,8 @@ class Guerrier {
         this.pv = VAL_PV;
     }
 
-    frapper(guerrier) {
+    // fonction de bataille entre deux guerriers 
+    battre(guerrier) {
         let somme = De.lancerMultiples(this.force);
         console.log("Degat : " + somme);
         guerrier.degatsReçus(somme);
@@ -76,7 +77,7 @@ class Guerrier {
     setArmure(armure) {
         this.armure = armure;
     }
-    
+  // afficher infos guerrier 
     afficheInfosGuerriers() {
         return `
         <ul>

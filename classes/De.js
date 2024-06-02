@@ -1,7 +1,7 @@
 
 class De {
     static lancerDe() {
-        const value = 3;
+        const value = 3; // puisque c'est un Dé de 3 faces 
         return Math.floor(Math.random() * value);
     }
 
@@ -9,6 +9,7 @@ class De {
         this.resDe = this.lancerDe();
     }
 
+    // lancer le de selon la force du guerriers 
     static lancerMultiples(nbLancer) {
         let somme = 0;
         while (nbLancer !== 0) {

@@ -1,14 +1,14 @@
 
-
 class Plateau {
     constructor() {
         this.NB_CARREAUX = 5;
         this.listeTemp = [];
         this.carreaux = [];
         this.nbCarreaux = 0;
-        this.ajouterCarreauMultiples(this.NB_CARREAUX);
+        this.remplirPlateau(this.NB_CARREAUX);
     }
 
+ // placer les guerries chacun dans son carreau intial : 0 pour les bleus et 4 pour les rouges 
     placerGuerrier(guerrier, couleur) {
         if (couleur === 'Bleu') {
             this.carreaux[0].ajouterGuerrier(guerrier, couleur);
@@ -22,14 +22,16 @@ class Plateau {
         this.carreaux[carreau.getNumeroDeLaCase()] = carreau;
         this.nbCarreaux++;
     }
-
-    ajouterCarreauMultiples(nbCases) {
+     
+    // remplissage du plateau des carreaux 
+    remplirPlateau(nbCases) {
         for (let i = 0; i < nbCases; i++) {
             this.ajouterUnCarreau(i);
         }
     }
 
-    avancerLesUnites() {
+    // avancer les guerriers sur les carreaux du plateau 
+    avancerGuerries() {
         this.listeTemp = [];
         for (let i = 0; i < 5; i++) {
             if (this.carreaux[i].getListeRouge().length > 0 && this.carreaux[i].getListeBleu().length === 0) {
@@ -39,6 +41,7 @@ class Plateau {
                 this.listeTemp = [];
             }
         }
+        // l'avancement se fait inversement 
         for (let i = 4; i >= 0; i--) {
             if (this.carreaux[i].getListeRouge().length === 0 && this.carreaux[i].getListeBleu().length > 0) {
                 this.listeTemp = this.listeTemp.concat(this.carreaux[i].getListeBleu());
@@ -50,13 +53,14 @@ class Plateau {
     }
 
 
-
+ //  verifier recontre des guerriers bleu et rouge dans un seul carreau 
     verifRencontreGuerrier(chBleu, chRouge) {
         this.carreaux.forEach(carreau => {
-            carreau.batailleArmée(chBleu, chRouge);
+            carreau.bataille(chBleu, chRouge);
         });
     }
 
+    // verifier le gagant du jeu 
     gagner(chatb,chatr) {
         let couleur = 'Noir';
         let carreau0 = this.carreaux[0];

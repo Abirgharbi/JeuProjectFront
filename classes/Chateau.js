@@ -8,26 +8,29 @@ class Chateau {
         this.couleur = couleur;
     }
 
+    
+    // sortir des guerriers des chateaux selon les ressources 
     sortirGuerrier() {
+
         this.listeTemp = [];
         let ressources = this.getRessources();
         while (ressources !== 0 && this.listeDattente.length !== 0) {
             let guerrier = this.listeDattente[0];
+
             if (guerrier.getCout() <= ressources) {
-                console.log("Ressources = " + ressources + ". Guerrier = " + guerrier.getCout() + " " + guerrier.getType());
+
                 this.listeGuerriers.push(guerrier);
                 this.listeTemp.push(guerrier);
                 this.listeDattente.shift();
                 this.ressources -= guerrier.getCout();
                 ressources = this.getRessources();
-                console.log("Ajouter à la liste principal.");
+          
             } else {
-                console.log("Ressources = " + ressources + ". Cout guerrier = " + guerrier.getCout());
-                console.log("Reste dans la liste d'attente.");
                 ressources = 0;
             }
         }
     }
+
 
 
     creerUnNain() {
@@ -54,19 +57,21 @@ class Chateau {
     }
 
 
-    nettoyerLaListe() {
-        this.listeGuerriers = [];
-        this.listeDattente = [];
-    }
+    // nettoyerLaListe() {
+    //     this.listeGuerriers = [];
+    //     this.listeDattente = [];
+    // }
 
+  
   
     afficherArmee() {
         let nbGuerriers = this.listeGuerriers.length;
         if (nbGuerriers !== 0) {
-            console.log("Chateau " + this.getCouleur() + " : " + nbGuerriers + " guerrier(s) dans votre armée (Au combat)!");
-        } else {
+            console.log("Chateau " + this.getCouleur() + " : " + nbGuerriers + " guerrier");
+        } 
+        else {
             alert("train please your worriors chateau "+this.getCouleur()+" !!!");
-                }
+        }
     }
 
   

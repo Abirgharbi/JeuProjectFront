@@ -5,6 +5,6 @@ class Elfe extends Guerrier {
         this.setType("Elfe");
         this.setCout(this.getCout() * 2);
         this.setDegat(this.getDegat() * 2);
-        this.setForce(this.getForce() * this.getDegat()); // double les dégâts portés
+        this.setForce(this.getForce() * this.getDegat()); 
     }
 }
